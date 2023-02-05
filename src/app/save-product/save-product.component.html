@@ -83,7 +83,10 @@
           Product category is required!
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-primary">Save</button>
+        <button *ngIf="id" class="btn btn-danger" (click)="delete()">
+          Delete
+        </button>
       </form>
     </div>
 

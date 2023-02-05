@@ -38,4 +38,12 @@ export class SaveProductComponent implements OnInit {
 
     this.Router.navigate(['/admin/products']);
   }
+
+  delete() {
+    if (!confirm('Are you sure you want to delete this product?') || !this.id)
+      return;
+
+    this.productService.delete(this.id);
+    this.Router.navigate(['/admin/products']);
+  }
 }

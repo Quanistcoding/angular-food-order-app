@@ -22,4 +22,8 @@ export class ProductService {
   update(id: string, product: any) {
     this.firestore.doc('products/' + id).update(product);
   }
+
+  delete(id: string) {
+    this.firestore.doc('products/' + id).delete();
+  }
 }
