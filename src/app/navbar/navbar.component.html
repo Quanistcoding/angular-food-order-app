@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Food Order</a>
+    <a class="navbar-brand" routerLink="/">Food Order</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,21 +15,21 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Shopping Cart</a>
+          <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" routerLink="/login">Login</a>
         </li>
         <li ngbDropdown class="nav-item">
           <a href (click)="(false)" class="nav-link" ngbDropdownToggle
             >Dropdown</a
           >
           <div ngbDropdownMenu>
-            <button ngbDropdownItem>My Orders</button>
-            <button ngbDropdownItem>Manage Orders</button>
-            <button ngbDropdownItem>Manage Products</button>
+            <a ngbDropdownItem routerLink="/my-orders">My Orders</a>
+            <a ngbDropdownItem routerLink="/admin/orders">Manage Orders</a>
+            <a ngbDropdownItem routerLink="/admin/products">Manage Products</a>
             <div class="dropdown-divider"></div>
-            <button ngbDropdownItem>Log out</button>
+            <a ngbDropdownItem>Log out</a>
           </div>
         </li>
       </ul>
