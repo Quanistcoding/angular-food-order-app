@@ -13,9 +13,11 @@ import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SaveProductsComponent } from './save-products/save-products.component';
+import { UserService } from './services/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +44,9 @@ import { SaveProductsComponent } from './save-products/save-products.component';
       appId: '1:11030503831:web:086d99d54548e1137c64d2',
       measurementId: 'G-7EMF5PKRHN',
     }),
+    AngularFirestoreModule,
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
