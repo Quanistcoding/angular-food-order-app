@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 
 @Component({
@@ -9,11 +10,12 @@ import { CategoryService } from '../services/category.service';
 export class SaveProductComponent {
   categories$;
 
-  constructor(categoryService: CategoryService) {
+  constructor(categoryService: CategoryService, private Router: Router) {
     this.categories$ = categoryService.getAll().valueChanges({ idField: 'id' });
   }
 
   save(product: any) {
     console.log(product);
+    this.Router.navigate(['/admin/products']);
   }
 }
