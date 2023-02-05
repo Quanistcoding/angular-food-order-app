@@ -15,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { SaveProductsComponent } from './save-products/save-products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { AuthGuardService } from './services/auth-guard.service';
     ManageOrdersComponent,
     ManageProductsComponent,
     NotFoundComponent,
+    SaveProductsComponent,
   ],
   imports: [
     BrowserModule,
