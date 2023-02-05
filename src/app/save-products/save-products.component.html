@@ -1,27 +1,48 @@
 <div class="container pt-5">
   <div class="row">
     <div class="col-sm">
-      <form>
+      <form (ngSubmit)="save(form.value)" #form="ngForm">
         <div class="mb-3">
           <label for="title" class="form-label">Product Title</label>
-          <input type="text" class="form-control" id="title" />
+          <input
+            ngModel
+            name="title"
+            type="text"
+            class="form-control"
+            id="title"
+          />
           <div id="emailHelp" class="form-text"></div>
         </div>
         <div class="mb-3">
           <label for="price" class="form-label">Product Price</label>
           <div class="input-group mb-3">
             <span class="input-group-text">$</span>
-            <input type="number" class="form-control" id="price" />
+            <input
+              ngModel
+              name="price"
+              type="number"
+              class="form-control"
+              id="price"
+            />
           </div>
         </div>
         <div class="mb-3">
           <label for="imageUrl" class="form-label">Product Image Url</label>
-          <input type="text" class="form-control" id="imageUrl" />
+          <input
+            ngModel
+            name="imageUrl"
+            type="text"
+            class="form-control"
+            id="imageUrl"
+          />
         </div>
         <div class="mb-3">
           <label for="category" class="form-label">Product Category</label>
-          <select class="form-select">
+          <select ngModel name="category" id="category" class="form-select">
             <option></option>
+            <option *ngFor="let c of categories$ | async" [value]="c.id">
+              {{ "c.name" }}
+            </option>
           </select>
         </div>
 
