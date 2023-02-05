@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SaveProductsComponent } from './save-products/save-products.component';
 import { UserService } from './services/user.service';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,12 @@ import { UserService } from './services/user.service';
     }),
     AngularFirestoreModule,
   ],
-  providers: [AuthService, AuthGuardService, UserService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    UserService,
+    AdminAuthGuardService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
