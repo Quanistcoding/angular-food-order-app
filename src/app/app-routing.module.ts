@@ -31,6 +31,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService, AdminAuthGuardService],
   },
   {
+    path: 'admin/products/:id',
+    component: SaveProductComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService],
+  },
+  {
     path: 'admin/products',
     component: ManageProductsComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService],

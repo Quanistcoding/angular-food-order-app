@@ -14,4 +14,8 @@ export class ProductService {
   getAll() {
     return this.firestore.collection('products');
   }
+
+  findOne(id: string) {
+    return this.firestore.doc('products/' + id);
+  }
 }

@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class UserService {
   constructor(private firestore: AngularFirestore) {}
 
-  find() {
+  getAll() {
     return this.firestore.collection('users');
   }
 
