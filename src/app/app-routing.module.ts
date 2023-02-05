@@ -7,14 +7,26 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-
+import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'my-orders', component: MyOrdersComponent },
-  { path: 'admin/order', component: ManageOrdersComponent },
-  { path: 'admin/products', component: ManageProductsComponent },
+  {
+    path: 'my-orders',
+    component: MyOrdersComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'admin/orders',
+    component: ManageOrdersComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'admin/products',
+    component: ManageProductsComponent,
+    canActivate: [AuthGuardService],
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

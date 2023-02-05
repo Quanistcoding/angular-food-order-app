@@ -14,6 +14,7 @@ import { ManageProductsComponent } from './manage-products/manage-products.compo
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import { AuthService } from './services/auth.service';
       measurementId: 'G-7EMF5PKRHN',
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
