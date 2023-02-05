@@ -20,7 +20,6 @@ export class AdminAuthGuardService implements CanActivate {
         switchMap((user): any => {
           if (!user) return false;
           const id = user?.uid;
-          console.log(user);
           return this.userService.findOne(id).valueChanges();
         })
       )
