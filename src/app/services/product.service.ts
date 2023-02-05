@@ -18,4 +18,8 @@ export class ProductService {
   findOne(id: string) {
     return this.firestore.doc('products/' + id);
   }
+
+  update(id: string, product: any) {
+    this.firestore.doc('products/' + id).update(product);
+  }
 }

@@ -11,7 +11,7 @@ import { take } from 'rxjs';
 export class SaveProductComponent implements OnInit {
   categories$: any;
   product: any = {};
-
+  id?: string | null;
   constructor(
     private categoryService: CategoryService,
     private productService: ProductService,
@@ -23,16 +23,19 @@ export class SaveProductComponent implements OnInit {
     this.categories$ = this.categoryService
       .getAll()
       .valueChanges({ idField: 'id' });
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id)
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id)
       this.productService
-        .findOne(id)
+        .findOne(this.id)
         .valueChanges()
         .pipe(take(1))
         .subscribe((p) => (this.product = p));
   }
 
   save(product: any) {
+    if (this.id) this.productService.update(this.id, product);
+    else this.productService.create(product);
+
     this.Router.navigate(['/admin/products']);
   }
 }
