@@ -5,7 +5,7 @@ import firebase from 'firebase/compat/app';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: AngularFireAuth) {}
+  constructor(public auth: AngularFireAuth) {}
   login() {
     this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
