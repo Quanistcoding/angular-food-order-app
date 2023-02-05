@@ -8,7 +8,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { SaveProductsComponent } from './save-products/save-products.component';
+import { SaveProductComponent } from './save-product/save-product.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/products/new',
-    component: SaveProductsComponent,
+    component: SaveProductComponent,
     canActivate: [AuthGuardService, AdminAuthGuardService],
   },
   {

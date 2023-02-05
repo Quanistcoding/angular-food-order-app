@@ -3,10 +3,10 @@ import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-save-products',
-  templateUrl: './save-products.component.html',
-  styleUrls: ['./save-products.component.scss'],
+  templateUrl: './save-product.component.html',
+  styleUrls: ['./save-product.component.scss'],
 })
-export class SaveProductsComponent {
+export class SaveProductComponent {
   categories$;
 
   constructor(categoryService: CategoryService) {

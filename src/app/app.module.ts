@@ -17,7 +17,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { SaveProductsComponent } from './save-products/save-products.component';
+import { SaveProductComponent } from './save-product/save-product.component';
 import { UserService } from './services/user.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { ProductService } from './services/product.service';
@@ -32,7 +32,7 @@ import { ProductService } from './services/product.service';
     ManageOrdersComponent,
     ManageProductsComponent,
     NotFoundComponent,
-    SaveProductsComponent,
+    SaveProductComponent,
   ],
   imports: [
     BrowserModule,

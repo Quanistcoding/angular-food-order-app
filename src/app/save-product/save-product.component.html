@@ -10,8 +10,12 @@
             type="text"
             class="form-control"
             id="title"
+            required
+            #title="ngModel"
           />
-          <div id="emailHelp" class="form-text"></div>
+          <div class="alert alert-danger" *ngIf="title.touched && title.errors">
+            Product title is required!
+          </div>
         </div>
         <div class="mb-3">
           <label for="price" class="form-label">Product Price</label>
@@ -19,11 +23,22 @@
             <span class="input-group-text">$</span>
             <input
               ngModel
+              #price="ngModel"
               name="price"
               type="number"
               class="form-control"
               id="price"
+              required
+              min="0"
             />
+          </div>
+          <div class="alert alert-danger" *ngIf="price.touched && price.errors">
+            <div *ngIf="price.errors['required']">
+              Product price is required!
+            </div>
+            <div *ngIf="price.errors['min']">
+              Product price needs to be greater than or equal to 0!
+            </div>
           </div>
         </div>
         <div class="mb-3">
@@ -34,16 +49,37 @@
             type="text"
             class="form-control"
             id="imageUrl"
+            required
+            #imageUrl="ngModel"
           />
+          <div
+            class="alert alert-danger"
+            *ngIf="imageUrl.touched && imageUrl.errors"
+          >
+            Product image url is required!
+          </div>
         </div>
         <div class="mb-3">
           <label for="category" class="form-label">Product Category</label>
-          <select ngModel name="category" id="category" class="form-select">
+          <select
+            ngModel
+            required
+            #category="ngModel"
+            name="category"
+            id="category"
+            class="form-select"
+          >
             <option></option>
             <option *ngFor="let c of categories$ | async" [value]="c.id">
               {{ "c.name" }}
             </option>
           </select>
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="category.touched && category.errors"
+        >
+          Product category is required!
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
