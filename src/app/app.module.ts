@@ -12,7 +12,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +26,21 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ManageProductsComponent,
     NotFoundComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyA8ezeT-skkdJpgn2lX8CByFzvYSiEf9oc',
+      authDomain: 'food-order-59b6b.firebaseapp.com',
+      projectId: 'food-order-59b6b',
+      storageBucket: 'food-order-59b6b.appspot.com',
+      messagingSenderId: '11030503831',
+      appId: '1:11030503831:web:086d99d54548e1137c64d2',
+      measurementId: 'G-7EMF5PKRHN',
+    }),
+  ],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
