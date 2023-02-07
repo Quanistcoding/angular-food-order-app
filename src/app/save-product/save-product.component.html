@@ -71,8 +71,8 @@
             class="form-select"
           >
             <option></option>
-            <option *ngFor="let c of categories$ | async" [value]="c.id">
-              {{ "c.name" }}
+            <option *ngFor="let c of categories" [value]="c.name">
+              {{ c.name }}
             </option>
           </select>
         </div>
