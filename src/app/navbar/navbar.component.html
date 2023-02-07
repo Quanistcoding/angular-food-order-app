@@ -28,12 +28,16 @@
           *ngIf="user$ | async as user; else showLogin"
         >
           <a href (click)="(false)" class="nav-link" ngbDropdownToggle>{{
-            user.displayName || "username"
+            user.name || "username"
           }}</a>
           <div ngbDropdownMenu>
             <a ngbDropdownItem routerLink="/my-orders">My Orders</a>
-            <a ngbDropdownItem routerLink="/admin/orders">Manage Orders</a>
-            <a ngbDropdownItem routerLink="/admin/products">Manage Products</a>
+            <a ngbDropdownItem routerLink="/admin/orders" *ngIf="user.isAdmin"
+              >Manage Orders</a
+            >
+            <a ngbDropdownItem routerLink="/admin/products" *ngIf="user.isAdmin"
+              >Manage Products</a
+            >
             <div class="dropdown-divider"></div>
             <a ngbDropdownItem (click)="logout()">Log out</a>
           </div>
