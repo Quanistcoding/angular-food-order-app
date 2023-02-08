@@ -30,7 +30,7 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
   filter(query: string) {
     this.filteredProducts = query
       ? this.filteredProducts?.filter((p) =>
-          p.title.toLowerCase().inludes(query.toLowerCase())
+          p.title.toLowerCase().includes(query.toLowerCase())
         )
       : this.products;
   }

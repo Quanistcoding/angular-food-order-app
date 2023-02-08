@@ -9,6 +9,7 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   constructor(public auth: AngularFireAuth, private userService: UserService) {}
+
   login() {
     this.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
@@ -22,8 +23,6 @@ export class AuthService {
         };
 
         this.userService.findOneAndUpdate(user.uid, userData);
-
-        console.log(response.user);
       });
   }
 

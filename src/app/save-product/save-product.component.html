@@ -83,7 +83,7 @@
           Product category is required!
         </div>
 
-        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary" [disabled]="!form.valid">Save</button>
         <button *ngIf="id" class="btn btn-danger" (click)="delete()">
           Delete
         </button>
@@ -99,9 +99,13 @@
           *ngIf="product.imageUrl"
         />
         <div class="card-body">
-          <h5 class="card-title">{{ title.value }}</h5>
-          <p class="card-text">Category: {{ category.value }}</p>
-          <p class="card-text">Price: {{ price.value | currency : "USD" }}</p>
+          <h2 class="card-title">{{ title.value }}</h2>
+          <p class="card-text">
+            <strong>Category:</strong> {{ category.value }}
+          </p>
+          <p class="card-text">
+            <strong>Price:</strong> {{ price.value | currency : "USD" }}
+          </p>
         </div>
       </div>
     </div>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../services/category.service';
 import { ProductService } from '../services/product.service';
-import { Observable, take } from 'rxjs';
+import { take } from 'rxjs';
+import { NgForm } from '@angular/forms';
 import { Product } from '../models/product.model';
 @Component({
   selector: 'app-save-products',
@@ -42,9 +43,9 @@ export class SaveProductComponent implements OnInit {
         });
   }
 
-  save(product: any) {
-    if (this.id) this.productService.update(this.id, product);
-    else this.productService.create(product);
+  save(value: Product) {
+    if (this.id) this.productService.update(this.id, value);
+    else this.productService.create(value);
 
     this.Router.navigate(['/admin/products']);
   }
