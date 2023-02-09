@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  user$?: Observable<User>;
+  user?: User | null;
   cart$?: Observable<Product[]>;
   total?: number;
 
@@ -23,7 +23,9 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user$ = this.authService.user;
+    this.authService.getUser().subscribe((user) => {
+      this.user = user;
+    });
     this.store.select('cart').subscribe((cart) => {
       this.total = cart.reduce((s, c) => s + c.amount!, 0);
     });

@@ -1,7 +1,12 @@
 <div class="container">
   <h2>Shopping Cart</h2>
-
-  <table class="table text-center">
+  <ng-template #noItems
+    ><div class="alert alert-success my-3">No items in the shopping cart.</div>
+    <button class="btn btn-primary" routerLink="">
+      Continue shopping
+    </button></ng-template
+  >
+  <table class="table text-center" *ngIf="hasItems; else noItems">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -13,19 +18,30 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of cart$ | async; let i = index">
+      <tr
+        *ngFor="let product of cart$ | async; let i = index"
+        class="align-middle"
+      >
         <th>{{ i + 1 }}</th>
         <td><img src="{{ product.imageUrl }}" /></td>
         <td>{{ product.title }}</td>
         <td>{{ product.price | currency : "USD" }}</td>
         <td>
-          <button class="btn btn-warning" (click)="removeOne(product)">
+          <button class="btn btn-secondary" (click)="removeOne(product)">
             -
           </button>
           <span class="mx-4">{{ product.amount }}</span>
-          <button class="btn btn-warning" (click)="addOne(product)">+</button>
+          <button class="btn btn-secondary" (click)="addOne(product)">+</button>
         </td>
         <td>{{ product.price! * product.amount! | currency : "USD" }}</td>
+      </tr>
+      <tr class="text-right">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{ totlaPrice | currency : "USD" }}</td>
       </tr>
     </tbody>
   </table>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { UserService } from './user.service';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, of } from 'rxjs';
 import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root',
@@ -30,9 +30,10 @@ export class AuthService {
     this.auth.signOut();
   }
 
-  get user() {
+  getUser() {
     return this.auth.user.pipe(
-      switchMap((user): Observable<User> => {
+      switchMap((user): Observable<User | null> => {
+        if (!user) return of(null);
         return this.userService
           .findOne((user as firebase.User).uid)
           .valueChanges() as Observable<User>;

@@ -17,11 +17,7 @@
             <a class="nav-link" routerLink="/login">Login</a>
           </li>
         </ng-template>
-        <li
-          ngbDropdown
-          class="nav-item"
-          *ngIf="user$ | async as user; else showLogin"
-        >
+        <li ngbDropdown class="nav-item" *ngIf="user; else showLogin">
           <a href (click)="(false)" class="nav-link" ngbDropdownToggle>{{
             user.name || "username"
           }}</a>

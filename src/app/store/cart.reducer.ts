@@ -8,6 +8,7 @@ let initialState: Product[];
 try {
   initialState = cartString ? JSON.parse(cartString) : [];
 } catch (error) {
+  localStorage.clear();
   initialState = [];
 }
 
