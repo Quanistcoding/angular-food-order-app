@@ -1,0 +1,14 @@
+<div class="sticky-top .d-none">
+  <div class="w-100 ms-1 ms-md-2">
+    <div class="list-group">
+      <button
+        class="list-group-item list-group-item-action"
+        *ngFor="let category of categories$ | async"
+        [class.active]="category.name === selectedCategory"
+        (click)="select(category.name)"
+      >
+        {{ category.name }}
+      </button>
+    </div>
+  </div>
+</div>

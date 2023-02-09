@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from '../services/category.service';
-import { ProductService } from '../services/product.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 import { take } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { Product } from '../models/product.model';
+import { Product } from 'src/app/models/product.model';
 @Component({
   selector: 'app-save-products',
   templateUrl: './save-product.component.html',

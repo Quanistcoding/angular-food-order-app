@@ -5,24 +5,26 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { LoginComponent } from './login/login.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
-import { ManageProductsComponent } from './manage-products/manage-products.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { LoginComponent } from './components/login/login.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { SaveProductComponent } from './save-product/save-product.component';
+import { SaveProductComponent } from './components/save-product/save-product.component';
 import { UserService } from './services/user.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { ProductService } from './services/product.service';
-import { ProductsGridComponent } from './products-grid/products-grid.component';
-import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { ProductsGridComponent } from './components/products-grid/products-grid.component';
+import { CategoriesListComponent } from './components/categories-list/categories-list.component';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './store/cart.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,22 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
     }),
     AngularFirestoreModule,
     FormsModule,
+    StoreModule.forRoot(
+      { cart: cartReducer },
+      {
+        runtimeChecks: {
+          // strictStateImmutability and strictActionImmutability are enabled by default
+          strictStateSerializability: true,
+          strictActionSerializability: true,
+          strictActionWithinNgZone: true,
+          strictActionTypeUniqueness: true,
+          // if you want to change complexe objects and that we have. We need to disable these settings
+          // change strictStateImmutability, strictActionImmutability
+          strictStateImmutability: false, // set this to false
+          strictActionImmutability: false,
+        },
+      }
+    ),
   ],
   providers: [
     AuthService,

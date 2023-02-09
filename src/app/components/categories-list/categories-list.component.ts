@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
   selector: 'app-categories-list',

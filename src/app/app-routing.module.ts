@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
-import { ManageProductsComponent } from './manage-products/manage-products.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { ManageOrdersComponent } from './components/manage-orders/manage-orders.component';
+import { ManageProductsComponent } from './components/manage-products/manage-products.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { SaveProductComponent } from './save-product/save-product.component';
+import { SaveProductComponent } from './components/save-product/save-product.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 const routes: Routes = [
