@@ -21,6 +21,7 @@ import { SaveProductComponent } from './save-product/save-product.component';
 import { UserService } from './services/user.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { ProductService } from './services/product.service';
+import { ProductsGridComponent } from './products-grid/products-grid.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { ProductService } from './services/product.service';
     ManageProductsComponent,
     NotFoundComponent,
     SaveProductComponent,
+    ProductsGridComponent,
   ],
   imports: [
     BrowserModule,
