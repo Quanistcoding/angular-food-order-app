@@ -23,7 +23,8 @@ export const cartReducer = createReducer(
       result.push({ ...product, amount: 1 });
     } else {
       const newAmount = (result[index].amount! += amount);
-      result[index].amount! = newAmount < 0 ? 0 : newAmount;
+      if (newAmount === 0) result.splice(index, 1);
+      else result[index].amount! = newAmount < 0 ? 0 : newAmount;
     }
 
     updateLocalStorage(result);
