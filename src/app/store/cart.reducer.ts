@@ -2,7 +2,14 @@ import { createReducer, on } from '@ngrx/store';
 import { Product } from '../models/product.model';
 import { updateCart } from './cart.actions';
 
-const initialState: Product[] = [];
+const cartString: string | null = localStorage.getItem('food-order-cart');
+let initialState: Product[];
+
+try {
+  initialState = cartString ? JSON.parse(cartString) : [];
+} catch (error) {
+  initialState = [];
+}
 
 export const cartReducer = createReducer(
   initialState,
@@ -14,11 +21,16 @@ export const cartReducer = createReducer(
 
     if (index === -1) {
       result.push({ ...product, amount: 1 });
-      return result;
+    } else {
+      const newAmount = (result[index].amount! += amount);
+      result[index].amount! = newAmount < 0 ? 0 : newAmount;
     }
-    const newAmount = (result[index].amount! += amount);
 
-    result[index].amount! = newAmount < 0 ? 0 : newAmount;
+    updateLocalStorage(result);
     return result;
   })
 );
+
+function updateLocalStorage(cart: Product[]) {
+  localStorage.setItem('food-order-cart', JSON.stringify(cart));
+}
