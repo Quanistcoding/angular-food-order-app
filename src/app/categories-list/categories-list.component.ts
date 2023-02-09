@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CategoryService } from '../services/category.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CategoryService } from '../services/category.service';
   styleUrls: ['./categories-list.component.scss'],
 })
 export class CategoriesListComponent implements OnInit {
-  @Input() selectedCategory: string = 'Bread';
+  @Input() selectedCategory: string = '';
   @Output() onSelect = new EventEmitter();
 
   categories$?: Observable<any[]>;
@@ -18,7 +18,8 @@ export class CategoriesListComponent implements OnInit {
   ngOnInit(): void {
     this.categories$ = this.categoryService
       .getAll()
-      .valueChanges({ idField: 'id' });
+      .valueChanges({ idField: 'id' })
+      .pipe(map((categories) => [{ name: 'All', id: 'All' }, ...categories]));
   }
 
   select(category: string) {

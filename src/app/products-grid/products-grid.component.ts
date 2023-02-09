@@ -31,11 +31,11 @@ export class ProductsGridComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('chaingin');
     this.selectedProducts = this.initiateProducts();
   }
 
   public initiateProducts() {
+    if (this.selectedCategory === 'All') return this.products;
     return this.products?.filter(
       (item) => item.category === this.selectedCategory
     );
