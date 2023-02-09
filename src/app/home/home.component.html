@@ -1,1 +1,10 @@
-<app-products-grid></app-products-grid>
+<div class="row justify-content-center">
+  <div class="col-3">
+    <app-categories-list
+      (onSelect)="handleSelect($event)"
+    ></app-categories-list>
+  </div>
+  <div class="col">
+    <app-products-grid [selectedCategory]="selected"></app-products-grid>
+  </div>
+</div>
