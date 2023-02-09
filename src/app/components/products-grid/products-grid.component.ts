@@ -4,8 +4,9 @@ import {
   OnInit,
   OnChanges,
   SimpleChanges,
+  OnDestroy,
 } from '@angular/core';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { Store } from '@ngrx/store';
@@ -16,12 +17,12 @@ import { updateCart } from 'src/app/store/cart.actions';
   templateUrl: './products-grid.component.html',
   styleUrls: ['./products-grid.component.scss'],
 })
-export class ProductsGridComponent implements OnInit, OnChanges {
+export class ProductsGridComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selectedCategory: string = '';
   products?: Product[];
   selectedProducts?: Product[];
   cart$?: Observable<Product[]>;
-
+  subscription?: Subscription;
   constructor(
     private productService: ProductService,
     private store: Store<{ cart: Product[] }>
@@ -34,7 +35,10 @@ export class ProductsGridComponent implements OnInit, OnChanges {
 
     const cartObservable = this.store.select('cart');
 
-    combineLatest([productsObservable, cartObservable]).subscribe((values) => {
+    this.subscription = combineLatest([
+      productsObservable,
+      cartObservable,
+    ]).subscribe((values) => {
       const [products, cart] = values;
 
       const l = products.length;
@@ -52,6 +56,10 @@ export class ProductsGridComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.selectedProducts = this.sortProducts();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription!.unsubscribe();
   }
 
   addToCart(product: Product) {
