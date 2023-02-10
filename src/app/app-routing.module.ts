@@ -10,11 +10,17 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { AuthGuardService } from './services/auth-guard.service';
 import { SaveProductComponent } from './components/save-product/save-product.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'check-out',
+    component: CheckoutComponent,
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'my-orders',
     component: MyOrdersComponent,

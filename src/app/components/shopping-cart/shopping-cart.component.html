@@ -45,4 +45,8 @@
       </tr>
     </tbody>
   </table>
+  <ng-container *ngIf="hasItems">
+    <button class="btn btn-primary" routerLink="/check-out">Check out</button>
+    <button class="btn ms-5" (click)="clearCart()">clear shopping cart</button>
+  </ng-container>
 </div>

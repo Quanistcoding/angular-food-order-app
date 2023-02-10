@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Order Summary</h5>
+    <p>
+      You have <strong>{{ total }}</strong> items in your shopping cart.
+    </p>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let product of cart$ | async">
+        {{ product.title }} X {{ product.amount }}
+      </li>
+    </ul>
+    <button class="btn btn-primary">Plcae Order</button>
+  </div>
+</div>

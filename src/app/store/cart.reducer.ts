@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Product } from '../models/product.model';
-import { updateCart } from './cart.actions';
+import { updateCart, clearShoppingCart } from './cart.actions';
 
 const cartString: string | null = localStorage.getItem('food-order-cart');
 let initialState: Product[];
@@ -8,7 +8,7 @@ let initialState: Product[];
 try {
   initialState = cartString ? JSON.parse(cartString) : [];
 } catch (error) {
-  localStorage.clear();
+  localStorage.removeItem('food-order-cart');
   initialState = [];
 }
 
@@ -30,6 +30,10 @@ export const cartReducer = createReducer(
 
     updateLocalStorage(result);
     return result;
+  }),
+  on(clearShoppingCart, (state) => {
+    localStorage.removeItem('food-order-cart');
+    return [];
   })
 );
 

@@ -25,6 +25,9 @@ import { ProductsGridComponent } from './components/products-grid/products-grid.
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { StoreModule } from '@ngrx/store';
 import { cartReducer } from './store/cart.reducer';
+import { ShipmentComponent } from './components/shipment/shipment.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +42,9 @@ import { cartReducer } from './store/cart.reducer';
     SaveProductComponent,
     ProductsGridComponent,
     CategoriesListComponent,
+    ShipmentComponent,
+    OrderSummaryComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

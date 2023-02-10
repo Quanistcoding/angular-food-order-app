@@ -5,3 +5,5 @@ export const updateCart = createAction(
   '[cart] update',
   props<{ product: Product; amount: number }>()
 );
+
+export const clearShoppingCart = createAction('[cart] clear');
