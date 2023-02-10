@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { take } from 'rxjs';
 import { Shipment } from 'src/app/models/shipment.model';
-
+import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { Store } from '@ngrx/store';
+import { Product } from 'src/app/models/product.model';
 @Component({
   selector: 'app-shipment',
   templateUrl: './shipment.component.html',
@@ -22,10 +24,17 @@ export class ShipmentComponent implements OnInit {
       id: '',
     },
   };
-
   @Output() shipmentChange = new EventEmitter<Shipment>();
 
-  constructor(private authService: AuthService) {}
+  @Input() shipmentInvalid: boolean = true;
+  @Output() shipmentInvalidChange = new EventEmitter<boolean>();
+
+  hasItemsInCart = false;
+
+  constructor(
+    private authService: AuthService,
+    private store: Store<{ cart: Product[] }>
+  ) {}
 
   ngOnInit() {
     this.authService
@@ -36,9 +45,13 @@ export class ShipmentComponent implements OnInit {
         this.shipment.user.phone = user!.phone || '';
         this.shipment.user.id = user!.id || '';
       });
+
+    this.store.select('cart').subscribe((cart) => {
+      this.hasItemsInCart = cart.length !== 0;
+    });
   }
 
-  test() {
-    console.log(this.shipment);
+  updateValidState(form: NgForm) {
+    this.shipmentInvalidChange.emit(!form.valid! || !this.hasItemsInCart);
   }
 }

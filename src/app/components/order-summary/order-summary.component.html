@@ -17,7 +17,11 @@
         <div class="float-end">{{ totalPrice | currency : "USD" }}</div>
       </li>
     </ul>
-    <button class="btn btn-primary float-end mt-2" (click)="placeOrder()">
+    <button
+      [disabled]="shipmentInvalid"
+      class="btn btn-primary float-end mt-2"
+      (click)="placeOrder()"
+    >
       Plcae Order
     </button>
   </div>

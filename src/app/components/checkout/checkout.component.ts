@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Shipment } from 'src/app/models/shipment.model';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-checkout',
@@ -21,7 +22,12 @@ export class CheckoutComponent {
     },
   };
 
+  shipmentInvalid: boolean = true;
+
+  constructor(private orderService: OrderService) {}
+
   handlePlaceOrder() {
     console.log(this.shipment);
+    // this.orderService.placeOrder(this.shipment);
   }
 }

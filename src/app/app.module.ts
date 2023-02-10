@@ -28,6 +28,7 @@ import { cartReducer } from './store/cart.reducer';
 import { ShipmentComponent } from './components/shipment/shipment.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { OrderService } from './services/order.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +85,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     UserService,
     AdminAuthGuardService,
     ProductService,
+    OrderService,
   ],
   bootstrap: [AppComponent],
 })
