@@ -15,6 +15,7 @@ export class AuthService {
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((response) => {
         const user = response.user;
+        console.log(user);
         if (!user) return;
         const userData = {
           name: user.displayName,
@@ -36,7 +37,7 @@ export class AuthService {
         if (!user) return of(null);
         return this.userService
           .findOne((user as firebase.User).uid)
-          .valueChanges() as Observable<User>;
+          .valueChanges({ idField: 'id' }) as Observable<User>;
       })
     );
   }

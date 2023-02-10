@@ -2,13 +2,23 @@
   <div class="card-body">
     <h5 class="card-title">Order Summary</h5>
     <p>
-      You have <strong>{{ total }}</strong> items in your shopping cart.
+      You have <strong>{{ totalAmount }}</strong> items in your shopping cart.
     </p>
     <ul class="list-group list-group-flush">
       <li class="list-group-item" *ngFor="let product of cart$ | async">
         {{ product.title }} X {{ product.amount }}
+        <div class="float-end">
+          {{ product.amount! * product.price | currency : "USD" }}
+        </div>
+        <br />
+      </li>
+      <li class="list-group-item fw-bold">
+        Total
+        <div class="float-end">{{ totalPrice | currency : "USD" }}</div>
       </li>
     </ul>
-    <button class="btn btn-primary">Plcae Order</button>
+    <button class="btn btn-primary float-end mt-2" (click)="placeOrder()">
+      Plcae Order
+    </button>
   </div>
 </div>

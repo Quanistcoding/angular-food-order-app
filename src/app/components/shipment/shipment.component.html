@@ -1,19 +1,72 @@
-<form>
+<form #form="ngForm" (submit)="test()">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Name</label>
-    <input type="text" class="form-control" id="name" aria-describedby="name" />
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      aria-describedby="name"
+      required
+      name="name"
+      [(ngModel)]="shipment.user.name"
+      #nameInput="ngModel"
+    />
+    <div
+      *ngIf="nameInput.touched && nameInput.errors"
+      class="alert alert-danger"
+    >
+      Name is required.
+    </div>
   </div>
 
   <div class="mb-3">
     <label for="addressLine1" class="form-label">Address line 1</label>
-    <input type="text" class="form-control" id="addressLine1" />
+    <input
+      type="text"
+      class="form-control"
+      id="addressLine1"
+      required
+      name="line1"
+      [(ngModel)]="shipment.address.line1"
+      #line1Input="ngModel"
+    />
+    <div
+      *ngIf="line1Input.touched && line1Input.errors"
+      class="alert alert-danger"
+    >
+      Address is required.
+    </div>
   </div>
   <div class="mb-3">
     <label for="addressLine2" class="form-label">Address line 2</label>
-    <input type="text" class="form-control" id="addressLine2" />
+    <input
+      type="text"
+      class="form-control"
+      id="addressLine2"
+      name="line2"
+      [(ngModel)]="shipment.address.line2"
+    />
   </div>
   <div class="mb-3">
     <label for="city" class="form-label">City</label>
-    <input type="text" class="form-control" id="city" />
+    <input
+      type="text"
+      class="form-control"
+      id="city"
+      required
+      name="city"
+      [(ngModel)]="shipment.address.city"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input
+      type="text"
+      class="form-control"
+      id="phone"
+      required
+      name="phone"
+      [(ngModel)]="shipment.user.phone"
+    />
   </div>
 </form>

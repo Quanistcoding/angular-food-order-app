@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { Store } from '@ngrx/store';
@@ -8,14 +8,24 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./order-summary.component.scss'],
 })
 export class OrderSummaryComponent implements OnInit {
+  @Output() onPlaceOrder = new EventEmitter<any>();
   cart$?: Observable<Product[]>;
-  total = 0;
+  user$?: any;
+  totalAmount = 0;
+  totalPrice = 0;
   constructor(private store: Store<{ cart: Product[] }>) {}
 
   ngOnInit() {
     this.cart$ = this.store.select('cart');
     this.cart$.subscribe((cart) => {
-      this.total = cart.reduce((e, c) => e + c.amount!, 0);
+      for (let p of cart) {
+        this.totalAmount += p.amount!;
+        this.totalPrice += p.amount! * p.price;
+      }
     });
+  }
+
+  placeOrder() {
+    this.onPlaceOrder.emit();
   }
 }

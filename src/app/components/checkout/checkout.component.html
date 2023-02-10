@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row g-5">
     <div class="col-sm">
-      <app-shipment></app-shipment>
+      <app-shipment [(shipment)]="shipment"></app-shipment>
     </div>
     <div class="col-sm">
-      <app-order-summary> </app-order-summary>
+      <app-order-summary
+        (onPlaceOrder)="handlePlaceOrder()"
+      ></app-order-summary>
     </div>
   </div>
 </div>
