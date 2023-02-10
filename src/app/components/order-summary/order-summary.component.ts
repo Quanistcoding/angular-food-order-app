@@ -9,7 +9,9 @@ import { Store } from '@ngrx/store';
 })
 export class OrderSummaryComponent implements OnInit {
   @Input() shipmentInvalid: boolean = true;
+  @Input() hasOrderPlaced: boolean = false;
   @Output() onPlaceOrder = new EventEmitter<any>();
+
   cart$?: Observable<Product[]>;
   user$?: any;
   totalAmount = 0;

@@ -26,3 +26,8 @@
     </button>
   </div>
 </div>
+<div class="alert alert-success" role="alert" *ngIf="hasOrderPlaced">
+  Order Placed.
+  <a role="button" class="alert-link" routerLink="">continue shopping</a>, or
+  <a role="button" class="alert-link" routerLink="/my-orders">view orders</a>.
+</div>

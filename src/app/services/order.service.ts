@@ -11,4 +11,10 @@ export class OrderService {
   placeOrder(shipment: Shipment) {
     return this.firestore.collection('orders').add(shipment);
   }
+
+  getOrders(id: string) {
+    return this.firestore.collection('orders', (ref) =>
+      ref.where('id', '==', 'id')
+    );
+  }
 }

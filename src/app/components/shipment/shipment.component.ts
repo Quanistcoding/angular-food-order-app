@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { take } from 'rxjs';
+import { take, switchMap, of } from 'rxjs';
 import { Shipment } from 'src/app/models/shipment.model';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,6 +12,7 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ShipmentComponent implements OnInit {
   @Input() shipment: Shipment = {
+    date: '',
     cart: [],
     address: {
       line1: '',
@@ -40,15 +41,18 @@ export class ShipmentComponent implements OnInit {
     this.authService
       .getUser()
       .pipe(take(1))
-      .subscribe((user) => {
-        this.shipment.user.name = user!.name || '';
-        this.shipment.user.phone = user!.phone || '';
-        this.shipment.user.id = user!.id || '';
-      });
+      .pipe(
+        switchMap((user) => {
+          this.shipment.user.name = user!.name || '';
+          this.shipment.user.phone = user!.phone || '';
 
-    this.store.select('cart').subscribe((cart) => {
-      this.hasItemsInCart = cart.length !== 0;
-    });
+          return this.store.select('cart');
+        })
+      )
+      .subscribe((cart) => {
+        this.hasItemsInCart = cart.length !== 0;
+        this.shipment.cart = cart;
+      });
   }
 
   updateValidState(form: NgForm) {
