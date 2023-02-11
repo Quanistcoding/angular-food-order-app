@@ -1,1 +1,41 @@
-<p>manage-orders works!</p>
+<div class="container">
+  <div class="accordion">
+    <div
+      class="accordion-item"
+      *ngFor="let order of orders$ | async; index as i"
+    >
+      <h2 class="accordion-header">
+        <div
+          class="accordion-button row"
+          role="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#tid' + i"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          <div class="col">{{ order.date }}</div>
+          <div class="col">Total Price: {{ order.totalPrice }}</div>
+        </div>
+      </h2>
+      <div
+        id="{{ 'tid' + i }}"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let p of order.cart">
+              <div class="row">
+                <div class="col">{{ p.title }} * {{ p.amount }}</div>
+                <div class="col">
+                  {{ p.amount! * p.price | currency : "USD" }}
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

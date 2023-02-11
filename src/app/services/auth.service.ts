@@ -15,7 +15,6 @@ export class AuthService {
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((response) => {
         const user = response.user;
-        console.log(user);
         if (!user) return;
         const userData = {
           name: user.displayName,

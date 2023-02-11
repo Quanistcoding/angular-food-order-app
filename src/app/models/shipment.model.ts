@@ -1,5 +1,7 @@
 import { Product } from './product.model';
 export interface Shipment {
+  id?: string;
+  totalPrice?: number;
   date: string;
   cart: Product[];
   address: {

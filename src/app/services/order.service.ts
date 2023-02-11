@@ -12,9 +12,13 @@ export class OrderService {
     return this.firestore.collection('orders').add(shipment);
   }
 
-  getOrders(id: string) {
+  getOrdersWithUserId(id: string) {
     return this.firestore.collection('orders', (ref) =>
-      ref.where('id', '==', 'id')
+      ref.where('user.id', '==', id)
     );
+  }
+
+  getAllOrders() {
+    return this.firestore.collection('orders');
   }
 }
