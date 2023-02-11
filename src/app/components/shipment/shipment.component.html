@@ -29,6 +29,7 @@
       name="line1"
       [(ngModel)]="shipment.address.line1"
       #line1Input="ngModel"
+      required
     />
     <div
       *ngIf="line1Input.touched && line1Input.errors"
@@ -56,6 +57,7 @@
       required
       name="city"
       [(ngModel)]="shipment.address.city"
+      required
     />
   </div>
   <div class="mb-3">
@@ -67,6 +69,7 @@
       required
       name="phone"
       [(ngModel)]="shipment.user.phone"
+      required
     />
   </div>
 </form>
