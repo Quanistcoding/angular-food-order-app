@@ -14,11 +14,13 @@ export class OrderService {
 
   getOrdersWithUserId(id: string) {
     return this.firestore.collection('orders', (ref) =>
-      ref.where('user.id', '==', id)
+      ref.where('user.id', '==', id).orderBy('date', 'desc')
     );
   }
 
   getAllOrders() {
-    return this.firestore.collection('orders');
+    return this.firestore.collection('orders', (ref) =>
+      ref.orderBy('date', 'desc')
+    );
   }
 }
